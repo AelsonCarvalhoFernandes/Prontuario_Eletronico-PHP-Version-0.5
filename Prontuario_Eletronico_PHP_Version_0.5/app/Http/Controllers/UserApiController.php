@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Atestado;
+use App\Models\Information;
+use App\Models\Laudo;
+use App\Models\Receita;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -36,7 +40,21 @@ class UserApiController extends Controller
      */
     public function show(string $id)
     {
-        return User::find($id)->get();
+
+        $user = User::find($id)->get();
+        $info = Information::where('user_id', $user['id'])->first();
+        $laudos = Laudo::where('user_id', $user['id'])->first();
+        $receitas = Receita::where('user_id', $user['id'])->first();
+        $atestados = Atestado::where('user_id', $user['id'])->first();
+
+        return [
+            'user'=>$user,
+            'information'=>$info, 
+            'laudos'=>$laudos,
+            'receitas'=>$receitas,
+            'atestados'=>$atestados,
+        ];
+
     }
 
     /**

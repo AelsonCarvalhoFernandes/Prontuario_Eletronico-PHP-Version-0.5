@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class RoutePublicController extends Controller
 {
     public function index(){
-        return view('index');
+
+        $posts = Post::paginate(10);
+
+        return view('index', ['posts'=>$posts]);
     }
 
     public function entrar(){

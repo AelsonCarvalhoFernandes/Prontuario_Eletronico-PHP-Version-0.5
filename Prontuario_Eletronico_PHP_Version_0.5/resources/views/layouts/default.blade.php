@@ -13,12 +13,12 @@
     <header>
         <div id="cabecalho">
             <div>
-                <h3>Hospital Deus te Guie</h3>
+                <h3>PRE-MAAP - Prontuário de Registro Eletrônico Médico de Apoio ao Atendimento do Paciente</h3>
             </div>
 
             <div>
                 @if (auth()->check())
-                    <a href="#">{{auth()->user()->name}}</a>
+                    <a href="#">Perfil do usuário</a>
                     <a href="{{route ('logout')}}">Sair</a>
                 @else
                     <a href="{{route('entrar')}}">Entrar</a>
