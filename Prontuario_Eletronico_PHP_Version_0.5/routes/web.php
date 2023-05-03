@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/')->group(function (){
-    Route::get('/', [RoutePublicController::class, 'index']);
-    Route::get('/login', [RoutePublicController::class, 'login']);
+Route::prefix('')->group(function (){
+    Route::get('', [RoutePublicController::class, 'index']);
+
+    Route::get('entrar', [RoutePublicController::class, 'entrar']);
+
+    Route::post('login', [RoutePublicController::class, 'login']);
 });
 
 

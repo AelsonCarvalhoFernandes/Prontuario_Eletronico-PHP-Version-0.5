@@ -21,7 +21,7 @@
                     <a href="#">{{auth()->name}}</a>
                     <a href="#">Sair</a>
                 @else
-                    <a href="#">Entrar</a>
+                    <a href="entrar">Entrar</a>
                 @endif
             </div>
 
