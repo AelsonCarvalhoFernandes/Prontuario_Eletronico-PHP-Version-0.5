@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoutePublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('/')->group(function (){
+    Route::get('/', [RoutePublicController::class, 'index']);
+    Route::get('/login', [RoutePublicController::class, 'login']);
 });
+
+
