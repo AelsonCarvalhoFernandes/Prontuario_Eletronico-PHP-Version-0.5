@@ -27,6 +27,18 @@ class UserApiController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        $user = $data['login'];
+        $infor = $data['informacao'];
+        $user['password'] = Hash::make($request->password);
+        $save = User::create($user);
+        $infor['user_id'] = $save->id;
+        $save = Information::create($infor);
+        return response('Usuario salvo com sucesso', 200);
+    }
+
+    public function store_medic(Request $request)
+    {
         $user = $request->all();
         $user['password'] = Hash::make($request->password);
 
