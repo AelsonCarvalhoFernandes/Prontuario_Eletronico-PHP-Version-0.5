@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('')->group(function (){
-    Route::get('', [RoutePublicController::class, 'index']);
+    Route::get('', [RoutePublicController::class, 'index']) ->name('index');
 
-    Route::get('entrar', [RoutePublicController::class, 'entrar']);
+    Route::get('entrar', [RoutePublicController::class, 'entrar'])->name('entrar');
 
-    Route::post('login', [RoutePublicController::class, 'login']);
+    Route::post('login', [RoutePublicController::class, 'login'])->name('login');
+
+    Route::get('logout', [RoutePublicController::class, 'logout'])->name('logout');
 });
 
 

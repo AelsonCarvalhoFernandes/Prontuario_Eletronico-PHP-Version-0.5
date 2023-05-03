@@ -18,10 +18,10 @@
 
             <div>
                 @if (auth()->check())
-                    <a href="#">{{auth()->name}}</a>
-                    <a href="#">Sair</a>
+                    <a href="#">{{auth()->user()->name}}</a>
+                    <a href="{{route ('logout')}}">Sair</a>
                 @else
-                    <a href="entrar">Entrar</a>
+                    <a href="{{route('entrar')}}">Entrar</a>
                 @endif
             </div>
 
@@ -33,6 +33,11 @@
                 <li class="itemnav" ><a href="#">Pagina Inicial</a></li>
                 <li class="itemnav"><a href="#">Nossos Serviços</a></li>
                 <li class="itemnav"><a href="#">Sobre</a></li>
+                @if (Auth()->check())
+                    <li class="itemnav" ><a href="#">Laudos</a></li>
+                    <li class="itemnav" ><a href="#">Atestados</a></li>
+                    <li class="itemnav" ><a href="#">Receitas</a></li>
+                @endif
             </ul>
         </nav>
     </header>
