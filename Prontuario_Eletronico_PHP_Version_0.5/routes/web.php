@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('')->group(function (){
+    
     Route::get('', [RoutePublicController::class, 'index']) ->name('index');
 
     Route::get('entrar', [RoutePublicController::class, 'entrar'])->name('entrar');

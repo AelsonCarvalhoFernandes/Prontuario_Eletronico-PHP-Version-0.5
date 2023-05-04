@@ -30,7 +30,7 @@ class UserApiController extends Controller
         $data = $request->all();
         $user = $data['login'];
         $infor = $data['informacao'];
-        $user['password'] = Hash::make($request->password);
+        $user['password'] = Hash::make($user['password']);
         $save = User::create($user);
         $infor['user_id'] = $save->id;
         $save = Information::create($infor);
@@ -53,7 +53,7 @@ class UserApiController extends Controller
     public function show(string $id)
     {
 
-        $user = User::find($id)->get();
+        $user = User::find($id)->first();
         $info = Information::where('user_id', $user['id'])->first();
         $laudos = Laudo::where('user_id', $user['id'])->first();
         $receitas = Receita::where('user_id', $user['id'])->first();

@@ -21,15 +21,18 @@ class RoutePublicController extends Controller
     }
 
     public function login(Request $request){
+
         $request->validate([
             'email' => 'required',
             'password' => 'required'
         ],[
             'email.required' => 'O email é obrigatório',
-            'password.required' => 'A senha está incorreta',
+            'password.required' => 'A senha está incorreta'
         ]);
 
         $data = $request->only('email', 'password');
+
+        
 
         $user = Auth::attempt($data);
 

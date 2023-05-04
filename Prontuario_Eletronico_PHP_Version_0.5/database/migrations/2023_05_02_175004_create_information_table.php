@@ -18,7 +18,7 @@ return new class extends Migration
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
             $table->date('data_nascimento');
-            $table->string('foto');
+            $table->string('foto')->nullable(true);
             $table->string('telefone');
             $table->string('cns');
             $table->string('rg');

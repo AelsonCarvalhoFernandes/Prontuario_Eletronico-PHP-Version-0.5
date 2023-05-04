@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Receita;
 use Illuminate\Http\Request;
 
 class ReceitaApiController extends Controller
@@ -11,7 +12,9 @@ class ReceitaApiController extends Controller
      */
     public function index()
     {
-        //
+        $receitas = Receita::all();
+
+        return $receitas;
     }
 
     /**
@@ -19,7 +22,11 @@ class ReceitaApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $receita = $request->all();
+
+        Receita::create($receita);
+
+        return response('Receita cadastrada com sucesso', 200);
     }
 
     /**
@@ -27,7 +34,10 @@ class ReceitaApiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $receita = Receita::find($id)->first();
+
+        return $receita;
+
     }
 
     /**
@@ -35,7 +45,15 @@ class ReceitaApiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $receita = Receita::find($id)->first();
+
+        if(!$receita){
+            return response('Receita não encontrada', 400);
+        }
+
+        Receita::update($data);
+
     }
 
     /**
@@ -43,6 +61,14 @@ class ReceitaApiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $receita = Receita::find($id)->first();
+
+        if(!$receita){
+            return response('Receita não encontrada', 400);
+        }
+
+        Receita::destroy($id);
+
+        return response('Receita deletada com sucesso', 200);
     }
 }
