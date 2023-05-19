@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/layout_style.css">
+    <link rel="stylesheet" href="/css/forms_style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>@yield('title')</title>
 </head>
 <body>
-    <header>
-        <div id="cabecalho">
-            <div>
-                <h3>PRE-MAAP - Prontuário de Registro Eletrônico Médico de Apoio ao Atendimento do Paciente</h3>
-            </div>
 
-            <div>
+    <header>
+        <div id="cabecalho" >
+            <h3>title</h3>
+            <div id="login_auth_desktop">
                 @if (auth()->check())
-                    <a href="#">Perfil do usuário</a>
-                    <a href="{{route ('logout')}}">Sair</a>
+                <span class="material-icons">face</span> <a href="#">{{auth()->user()->name}}</a>
+                    <a id="entrar_sair" href="{{route ('logout')}}">Sair</a>
                 @else
-                    <a href="{{route('entrar')}}">Entrar</a>
+                    <a id="entrar_sair" href="{{route ('entrar')}}">Entrar</a>
                 @endif
             </div>
-
+            <span id="hamburger_mobile" class="material-icons">menu</span>
         </div>
+
+        
+
+    </header>
+
+    <div id="navegacao">
         <nav>
-            <span class="material-icons" id="burger">menu</span>
-            <ul id="menu_itens">
-                
-                <li class="itemnav" ><a href="#">Pagina Inicial</a></li>
-                <li class="itemnav"><a href="#">Nossos Serviços</a></li>
-                <li class="itemnav"><a href="#">Sobre</a></li>
-                @if (Auth()->check())
-                    <li class="itemnav" ><a href="#">Laudos</a></li>
-                    <li class="itemnav" ><a href="#">Atestados</a></li>
-                    <li class="itemnav" ><a href="#">Receitas</a></li>
+            <ul>
+                <li><a href="#">Pagina Inicial</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Sobre</a></li>
+                @if (auth()->check())
+                    <li><a href="{{route ('pagina_paciente')}}">Pagina do Paciente</a></li>
                 @endif
             </ul>
+            <div id="login_auth_cell">
+                @if (auth()->check())
+                    <span class="material-icons">face</span> <a href="#">{{auth()->user()->name}}</a>
+                    <a id="entrar_sair" href="{{route ('logout')}}">Sair</a>
+                @else
+                    <a id="entrar_sair" href="{{route ('entrar')}}">Entrar</a>
+                @endif
+            </div>
         </nav>
-    </header>
+    </div>
+
 
     <main>
         @yield('content')
@@ -49,6 +59,8 @@
     <footer>
 
     </footer>
-    <script src="js/script.js"></script>
+
+    <script src="/js/script.js"></script>
+    
 </body>
 </html>

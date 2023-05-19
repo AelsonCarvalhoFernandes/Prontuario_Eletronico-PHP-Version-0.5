@@ -74,11 +74,13 @@ class UserApiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->all();
-
-        $user = User::find($id)->first();
-
-        return User::updated($data);
+        $dados = $request->all();
+        if(array_key_exists('password', $dados)){
+            $dados['password'] = Hash::make($dados['password']);
+        }
+        $user = User::find($id);
+        $user->update($dados);
+        return $user;
     }
 
     /**
@@ -86,6 +88,8 @@ class UserApiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::destroy($id);
+
+        return response('Usuario deletado com sucesso', 200);
     }
 }

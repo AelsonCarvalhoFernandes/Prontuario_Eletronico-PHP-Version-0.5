@@ -1,18 +1,33 @@
 @extends('layouts.default')
 
-@section('title', 'Entrar')
+@section('title', 'entrar')
     
 @section('content')
-    <form id="entrar" action="login" method="post">
-        @csrf
-        <div id="form_div">
-            <div><label for="email">E-mail:</label></div>
-            <div><input type="text" class="textinput" id="email" name="email" placeholder="pessoa@email.com"></div>
-        </div>
-        <div>
-            <div><label for="password">Senha:</label></div>
-            <div><input type="password" class="textinput" id="password" name="password" placeholder="Coloque aqui sua senha"></div>
-        </div>
-        <input id="buttonsuccess" type="submit" value="Entrar">
-    </form>
+    <div id="login_conteiner">
+
+        <form action="{{route ('login')}}" method="POST">
+            @csrf
+
+            @error('error')
+                <div>
+                    {{$message}}
+                </div>
+            @enderror
+
+
+            <div>
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" class="input_login">
+            </div>
+            <div>
+                <label for="password">Senha:</label><br>
+                <input type="password" name="password" class="input_login">
+            </div>
+
+            <div class="conteiner_center">
+                <input type="submit" value="Entrar" class="button_site">
+            </div>
+        </form>
+
+    </div>
 @endsection

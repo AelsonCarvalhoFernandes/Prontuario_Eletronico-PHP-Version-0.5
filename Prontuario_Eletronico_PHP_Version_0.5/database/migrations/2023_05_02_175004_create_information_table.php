@@ -17,17 +17,17 @@ return new class extends Migration
             ->constrained()
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
-            $table->date('data_nascimento');
-            $table->string('foto')->nullable(true);
-            $table->string('telefone');
-            $table->string('cns');
-            $table->string('rg');
-            $table->string('sexo');
-            $table->string('endereco');
-            $table->string('numero');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('estado');
+            $table->date('data_nascimento')->nullable(true);
+            $table->string('foto')->nullable();
+            $table->string('telefone')->nullable(true);
+            $table->string('cns')->nullable(true);
+            $table->string('rg')->nullable(true);
+            $table->string('sexo')->nullable(true);
+            $table->string('endereco')->nullable(true);
+            $table->string('numero')->nullable(true);
+            $table->string('bairro')->nullable(true);
+            $table->string('cidade')->nullable(true);
+            $table->string('estado')->nullable(true);
             $table->timestamps();
         });
     }

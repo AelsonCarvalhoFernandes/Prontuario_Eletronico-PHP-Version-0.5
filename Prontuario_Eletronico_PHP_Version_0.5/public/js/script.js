@@ -1,13 +1,11 @@
-const burger = document.getElementById('burger');
+const menu = document.getElementById('navegacao')
+const burger = document.getElementById('hamburger_mobile')
 
-const menu = document.getElementById('menu_itens');
-
-burger.addEventListener('click', click)
-
-function click(){
-    if(menu.style.display == 'none'){
-        menu.style.display = 'flex'
+burger.addEventListener('click', ()=>{
+    if(menu.style.display == 'flex'){
+        menu.style.display = 'none';
+        
     }else{
-        menu.style.display = 'none'
+        menu.style.display = 'flex';
     }
-}
+})

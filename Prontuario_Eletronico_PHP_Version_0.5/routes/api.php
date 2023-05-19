@@ -5,6 +5,7 @@ use App\Http\Controllers\LaudoApiController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReceitaApiController;
 use App\Http\Controllers\UserApiController;
+use App\Http\Controllers\UserApiController as ControllersUserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,9 @@ Route::post('token', [LoginController::class, 'login_api']);
 
 Route::prefix('')->group(function(){
     Route::get('user', [UserApiController::class, 'index']);
-    Route::post('user/post', [UserApiController::class, 'store']);
+    Route::post('user/create', [UserApiController::class, 'store']);
     Route::get('user/{id}', [UserApiController::class, 'show']);
-    Route::put('user/update/{id}', [UserApiController::class, 'update']);
+    Route::post('user/update/{id}', [UserApiController::class, 'update']);
     Route::delete('user/delete/{id}', [UserApiController::class, 'destroy']);
 });
 
