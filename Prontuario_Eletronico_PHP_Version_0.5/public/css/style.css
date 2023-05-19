@@ -1,0 +1,22 @@
+#user_conteiner{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#user_options_conteiner{
+    display: flex;
+    justify-content: space-around;
+    min-width: 300px;
+    max-width: 700px;
+}
+
+.user_options{
+    padding: 10px;
+    background-color: #00C9D2;
+    color: white;
+    border: solid black 1px;
+    border-radius: 4px;
+}

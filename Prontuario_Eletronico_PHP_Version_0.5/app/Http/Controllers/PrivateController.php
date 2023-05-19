@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 class PrivateController extends Controller
 {
     public function paciente(){
-        return view('paciente');
+
+        $receitas = auth()->receitas;
+
+        return view('paciente', [
+            'receita' => $receitas
+        ]);
     }
 }

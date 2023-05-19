@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atestado;
+use App\Models\Doctor;
 use App\Models\Information;
 use App\Models\Laudo;
 use App\Models\Receita;
@@ -28,23 +29,29 @@ class UserApiController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $user = $data['login'];
-        $infor = $data['informacao'];
-        $user['password'] = Hash::make($user['password']);
-        $save = User::create($user);
-        $infor['user_id'] = $save->id;
-        $save = Information::create($infor);
-        return response('Usuario salvo com sucesso', 200);
-    }
 
-    public function store_medic(Request $request)
-    {
-        $user = $request->all();
-        $user['password'] = Hash::make($request->password);
+        if($data['doctor']){
+            $user = $data['login'];
+            $infor = $data['informacao'];
+            $doctor = $data['doctor'];
+            $user['password'] = Hash::make($user['password']);
+            $save = User::create($user);
+            $infor['user_id'] = $save->id;
+            $doctor['user_id'] = $save->id;
+            $save = Information::create($infor);
+            $save = Doctor::create($doctor);
+            return response('Medico salvo com sucesso', 200);
+        }else{
+            $user = $data['login'];
+            $infor = $data['informacao'];
+            $user['password'] = Hash::make($user['password']);
+            $save = User::create($user);
+            $infor['user_id'] = $save->id;
+            $save = Information::create($infor);
+            return response('Usuario salvo com sucesso', 200);
+        }
 
-        $save = User::create($user);
-
-        return response($save);
+        
     }
 
     /**
@@ -55,16 +62,10 @@ class UserApiController extends Controller
 
         $user = User::find($id)->first();
         $info = Information::where('user_id', $user['id'])->first();
-        $laudos = Laudo::where('user_id', $user['id'])->first();
-        $receitas = Receita::where('user_id', $user['id'])->first();
-        $atestados = Atestado::where('user_id', $user['id'])->first();
 
         return [
             'user'=>$user,
-            'information'=>$info, 
-            'laudos'=>$laudos,
-            'receitas'=>$receitas,
-            'atestados'=>$atestados,
+            'information'=>$info
         ];
 
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Atestado;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AtestadoApiController extends Controller
@@ -22,11 +23,12 @@ class AtestadoApiController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->all();
 
-        Atestado::create($data);
+        $save = Atestado::create($data);
 
-        return response('Usuário cadastrado com sucesso', 201);
+        return response('Atestado cadastrado com sucesso', 201);
     }
 
     /**
@@ -34,9 +36,15 @@ class AtestadoApiController extends Controller
      */
     public function show(string $id)
     {
-        $atestado = Atestado::find($id)->first();
 
-        return $atestado;
+        $atestado = Atestado::where('user_id', $id)->get();
+
+        if($atestado){
+            return $atestado;
+        }else{
+            return response('Nenhum atestado encontrado', 400);
+        }
+        
     }
 
     /**
@@ -48,9 +56,14 @@ class AtestadoApiController extends Controller
         $data = $request->all();
         $atestado = Atestado::find($id)->first();
 
+        if(!$atestado){
+            return response('Laudo não encontrada', 400);
+        }
+        
         $atestado->update($data);
 
-        return response('Conteudo Atualizado com sucesso', 200);
+        return response('Conteudo do atestado Atualizado com sucesso', 200);
+
     }
 
     /**
@@ -58,6 +71,7 @@ class AtestadoApiController extends Controller
      */
     public function destroy(string $id)
     {
+        
         $atestado = Atestado::find($id)->first();
 
         if(!$atestado){

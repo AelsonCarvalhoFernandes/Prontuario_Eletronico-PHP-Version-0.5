@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Receita;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReceitaApiController extends Controller
@@ -24,7 +25,7 @@ class ReceitaApiController extends Controller
     {
         $receita = $request->all();
 
-        Receita::create($receita);
+        $save = Receita::create($receita);
 
         return response('Receita cadastrada com sucesso', 200);
     }
@@ -34,9 +35,13 @@ class ReceitaApiController extends Controller
      */
     public function show(string $id)
     {
-        $receita = Receita::find($id)->first();
+        $receitas = Receita::where('user_id', $id)->get();
 
-        return $receita;
+        if($receitas){
+            return $receitas;
+        }else{
+            return response('Nenhum receita encontrado', 400);
+        }
 
     }
 
@@ -46,13 +51,16 @@ class ReceitaApiController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-        $receita = Receita::find($id)->first();
+        $receita = Receita::find($id);
 
         if(!$receita){
             return response('Receita não encontrada', 400);
         }
 
-        Receita::update($data);
+        
+        $receita->update($data);
+
+        return response('Conteudo Atualizado com sucesso', 200);
 
     }
 
@@ -67,7 +75,7 @@ class ReceitaApiController extends Controller
             return response('Receita não encontrada', 400);
         }
 
-        Receita::destroy($id);
+        Receita::destroy($receita['id']);
 
         return response('Receita deletada com sucesso', 200);
     }

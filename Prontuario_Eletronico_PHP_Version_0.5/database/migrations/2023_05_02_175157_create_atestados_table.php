@@ -22,7 +22,7 @@ return new class extends Migration
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
             $table->string('resume');
-            $table->string('content') -> required(false);
+            $table->text('content') -> required(false);
             $table->date('data_emissao');
             $table->timestamps();
         });

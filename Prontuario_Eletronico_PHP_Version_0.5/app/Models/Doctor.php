@@ -9,6 +9,14 @@ class Doctor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id',
+        'user_id',
+        'crm',
+        'data_emissao',
+        'estado',
+    ];
+
     public function laudo(){
         return $this->hasMany(Laudo::class);
     }

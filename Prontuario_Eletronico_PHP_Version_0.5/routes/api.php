@@ -22,17 +22,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('token', [LoginController::class, 'login_api']);
 
-Route::prefix('')->group(function(){
-    Route::get('user', [UserApiController::class, 'index']);
-    Route::post('user/create', [UserApiController::class, 'store']);
-    Route::get('user/{id}', [UserApiController::class, 'show']);
-    Route::post('user/update/{id}', [UserApiController::class, 'update']);
-    Route::delete('user/delete/{id}', [UserApiController::class, 'destroy']);
+Route::prefix('user')->group(function(){
+    Route::get('', [UserApiController::class, 'index']);
+    Route::post('create', [UserApiController::class, 'store']);
+    Route::get('{id}', [UserApiController::class, 'show']);
+    Route::post('update/{id}', [UserApiController::class, 'update']);
+    Route::delete('delete/{id}', [UserApiController::class, 'destroy']);
 });
 
 Route::prefix('atestado')->group(function(){
     Route::get('', [AtestadoApiController::class, 'index']);
-    Route::post('post', [AtestadoApiController::class, 'store']);
+    Route::post('create', [AtestadoApiController::class, 'store']);
     Route::get('{id}', [AtestadoApiController::class, 'show']);
     Route::put('update/{id}', [AtestadoApiController::class, 'update']);
     Route::delete('delete/{id}', [AtestadoApiController::class, 'destroy']);
@@ -40,9 +40,9 @@ Route::prefix('atestado')->group(function(){
 
 Route::prefix('receita')->group(function(){
     Route::get('', [ReceitaApiController::class, 'index']);
-    Route::post('post', [ReceitaApiController::class, 'store']);
+    Route::post('create', [ReceitaApiController::class, 'store']);
     Route::get('{id}', [ReceitaApiController::class, 'show']);
-    Route::put('update/{id}', [ReceitaApiController::class, 'update']);
+    Route::post('update/{id}', [ReceitaApiController::class, 'update']);
     Route::delete('delete/{id}', [ReceitaApiController::class, 'destroy']);
 });
 

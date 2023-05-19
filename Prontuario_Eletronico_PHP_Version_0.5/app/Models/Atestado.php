@@ -14,5 +14,6 @@ class Atestado extends Model
         'doctor_id',
         'resume',
         'content',
+        'data_emissao',
     ];
 }
