@@ -10,13 +10,10 @@ class Information extends Model
     use HasFactory;
 
     protected $fillable = [
-        'data_nascimento',
         'user_id',
         'foto',
         'numero',
         'sexo',
-        'rg',
-        'cns',
         'cidade',
         'endereco',
         'bairro',

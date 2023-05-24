@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->date('data_nascimento')->nullable(true);
+            $table->string('cpf')->nullable(true);
+            $table->string('cns')->nullable(true);
+            $table->string('rg')->nullable(true);
             $table->boolean('admin')->default(0);
             $table->boolean('staff')->default(0);
             $table->boolean('doctor')->default(0);

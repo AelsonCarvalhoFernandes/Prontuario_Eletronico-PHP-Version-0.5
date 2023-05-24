@@ -17,11 +17,9 @@ return new class extends Migration
             ->constrained()
             ->onDelete('CASCADE')
             ->onUpdate('CASCADE');
-            $table->date('data_nascimento')->nullable(true);
+
             $table->string('foto')->nullable();
             $table->string('telefone')->nullable(true);
-            $table->string('cns')->nullable(true);
-            $table->string('rg')->nullable(true);
             $table->string('sexo')->nullable(true);
             $table->string('endereco')->nullable(true);
             $table->string('numero')->nullable(true);
