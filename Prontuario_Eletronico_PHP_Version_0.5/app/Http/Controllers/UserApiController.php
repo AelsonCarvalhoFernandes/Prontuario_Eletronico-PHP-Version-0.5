@@ -60,7 +60,7 @@ class UserApiController extends Controller
     public function show(string $id)
     {
 
-        $user = User::find($id)->first();
+        $user = User::find($id);
         $info = Information::where('user_id', $user['id'])->first();
 
         return [
