@@ -8,6 +8,7 @@ header{
     background-color: #0F928C;
     height: 80px;
     display: flex;
+    color: white;
 }
 
 #navegacao{

@@ -14,10 +14,10 @@
 
     <header>
         <div id="cabecalho" >
-            <h3>title</h3>
+            <h3>Pre-maap - Prontuário eletrônico medico de apoio ao atendimento do paciente</h3>
             <div id="login_auth_desktop">
                 @if (auth()->check())
-                <span class="material-icons">face</span> <a href="#">{{auth()->user()->name}}</a>
+                <span class="material-icons">face</span> <a href="{{route ('perfil')}}">{{auth()->user()->name}}</a>
                     <a id="entrar_sair" href="{{route ('logout')}}">Sair</a>
                 @else
                     <a id="entrar_sair" href="{{route ('entrar')}}">Entrar</a>
@@ -33,7 +33,7 @@
     <div id="navegacao">
         <nav>
             <ul>
-                <li><a href="#">Pagina Inicial</a></li>
+                <li><a href="{{route ('index')}}">Pagina Inicial</a></li>
                 <li><a href="#">Noticias</a></li>
                 <li><a href="#">Sobre</a></li>
                 @if (auth()->check())
